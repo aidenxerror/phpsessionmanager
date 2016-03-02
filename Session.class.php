@@ -148,8 +148,8 @@ class SessionManager
 
 
 		if( $_SESSION['userAgent'] != $_SERVER['HTTP_USER_AGENT']
-			&& !( strpos($_SESSION['userAgent'], ÔTridentÕ) !== false
-				&& strpos($_SERVER['HTTP_USER_AGENT'], ÔTridentÕ) !== false))
+			&& !( strpos($_SESSION['userAgent'], 'Trident') !== false
+				&& strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== false))
 		{
 			return false;
 		}
