@@ -52,7 +52,10 @@ class SessionManager
 	{
 		// Set the cookie name
 		session_name($name . '_Session');
-
+		
+		// Set domain
+		$domain = isset($domain) ? $domain : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : null);
+		
 		// Set SSL level
 		$https = isset($secure) ? $secure : isset($_SERVER['HTTPS']);
 
@@ -92,8 +95,9 @@ class SessionManager
 	static function regenerateSession()
 	{
 		// If this session is obsolete it means there already is a new id
-		if(isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] == true)
+		if(isset($_SESSION['OBSOLETE']) || (isset($_SESSION['OBSOLETE']) && $_SESSION['OBSOLETE'] == true)) {
 			return;
+		}
 
 		// Set current session to expire in 10 seconds
 		$_SESSION['OBSOLETE'] = true;
@@ -144,8 +148,8 @@ class SessionManager
 
 
 		if( $_SESSION['userAgent'] != $_SERVER['HTTP_USER_AGENT']
-			&& !( strpos($_SESSION['userAgent'], ‘Trident’) !== false
-				&& strpos($_SERVER['HTTP_USER_AGENT'], ‘Trident’) !== false))
+			&& !( strpos($_SESSION['userAgent'], √îTrident√ï) !== false
+				&& strpos($_SERVER['HTTP_USER_AGENT'], √îTrident√ï) !== false))
 		{
 			return false;
 		}
